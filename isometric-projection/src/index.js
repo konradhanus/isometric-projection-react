@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import MouseEvents from './components/MouseEvents';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MouseEvents>
+       <App />
+    </MouseEvents>
   </React.StrictMode>,
   document.getElementById('root')
 );

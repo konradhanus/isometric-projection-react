@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import _ from 'lodash';
 import './App.css';
-
+import Field from './components/Field';
 function App() {
+  const [fields, setFields] = useState(_.range(0, 10000))
+
+  const onFieldClick = (id) => {
+    const x = id % 100 + 1;
+    const y = Math.ceil((id + 1) / 100)
+    const newFields = fields;
+    newFields[id] = {
+      coortidates: {
+        x,
+        y
+      },
+      visited: 1
+    }
+    setFields(newFields);
+  }
+
+  const field = (id) => <Field id={id} onFieldClick={onFieldClick} />;
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {fields.map((id) => field(id))}
+    </>
   );
 }
+
+
 
 export default App;
